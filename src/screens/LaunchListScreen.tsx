@@ -52,6 +52,11 @@ export default function LaunchListScreen({ navigation }: Props) {
             <Text>{item.name}</Text>
           </TouchableOpacity>
         )}
+        ListEmptyComponent={
+          <View style={styles.empty}>
+            <Text>Nenhum lançamento encontrado</Text>
+          </View>
+        }
       />
     </View>
   );
@@ -75,5 +80,9 @@ const styles = StyleSheet.create({
   loading: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  empty: {
+    alignItems: 'center',
+    marginTop: 40,
   },
 });

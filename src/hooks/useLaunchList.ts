@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Launch } from '../types/launch';
 import { getLaunches } from '../services/api';
 
-export default function useLaunchList() {
+export function useLaunchList() {
   const [launches, setLaunches] = useState<Launch[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -18,11 +18,11 @@ export default function useLaunchList() {
     } finally {
       setLoading(false);
     }
-
-    useEffect(() => {
-      fetchLaunches();
-    }, []);
-
-    return { launches, loading, error, refetch: fetchLaunches };
   };
+
+  useEffect(() => {
+    fetchLaunches();
+  }, []);
+
+  return { launches, loading, error, refetch: fetchLaunches };
 }

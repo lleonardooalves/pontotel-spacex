@@ -1,9 +1,16 @@
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { View, Text } from 'react-native';
+import { RootStackParamList } from '../navigation';
 
-export default function LaunchDetailScreen() {
+type Props = NativeStackScreenProps<RootStackParamList, 'LaunchDetail'>;
+
+export default function LaunchDetailScreen({ route }: Props) {
+  const { id, name } = route.params;
+
   return (
     <View>
-      <Text>Detalhe</Text>
+      <Text>{name}</Text>
+      <Text>{id}</Text>
     </View>
   );
 }

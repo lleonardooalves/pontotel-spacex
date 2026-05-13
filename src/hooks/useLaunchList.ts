@@ -1,16 +1,27 @@
 import { useEffect, useState } from 'react';
-import { Launch } from '../types/launch';
 import { getLaunches } from '../services/api';
+import { useLaunchStore } from '../store/useLaunchStore';
 
 export function useLaunchList() {
-  const [launches, setLaunches] = useState<Launch[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { launches, setLaunches } = useLaunchStore();
+  const [loading, setLoading] = useState(launches.length === 0);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
+  const [statusFilter, setStatusFilter] = useState<
+    'all' | 'success' | 'failed' | 'futures'
+  >('all');
 
-  const filteredLaunches = launches.filter((launches) =>
-    launches.name.toLowerCase().includes(search.toLowerCase()),
-  );
+  const filteredLaunches = launches.filter((launch) => {
+    const matchesSearch = launch.name
+      .toLowerCase()
+      .includes(search.toLowerCase());
+    const matchesStatus =
+      statusFilter === 'all' ||
+      (statusFilter === 'success' && launch.success === true) ||
+      (statusFilter === 'failed' && launch.success === false) ||
+      (statusFilter === 'futures' && launch.success === null);
+    return matchesSearch && matchesStatus;
+  });
 
   const fetchLaunches = async () => {
     try {
@@ -37,5 +48,7 @@ export function useLaunchList() {
     filteredLaunches,
     search,
     setSearch,
+    statusFilter,
+    setStatusFilter,
   };
 }

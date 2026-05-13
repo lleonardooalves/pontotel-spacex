@@ -17,12 +17,12 @@ export default function Navigation() {
         <Stack.Screen
           name="LaunchList"
           component={LaunchListScreen}
-          options={{ title: 'Lançamentos SpaceX' }}
+          options={{ title: 'Lançamentos SpaceX', headerTitleAlign: 'center' }}
         />
         <Stack.Screen
           name="LaunchDetail"
           component={LaunchDetailScreen}
-          options={{ title: 'Detalhes' }}
+          options={{ title: 'Detalhes', headerTitleAlign: 'center' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

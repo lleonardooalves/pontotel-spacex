@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type ErrorProps = {
   error: string;
@@ -9,7 +9,9 @@ export default function ErrorBar({ error, refetch }: ErrorProps) {
   return (
     <View style={styles.container}>
       <Text>{error}</Text>
-      <Text onPress={refetch}>Tentar Novamente</Text>
+      <TouchableOpacity onPress={refetch}>
+        <Text>Tentar Novamente</Text>
+      </TouchableOpacity>
     </View>
   );
 }

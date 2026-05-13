@@ -14,7 +14,11 @@ export default function LaunchList({ data, onPress }: LaunchListProps) {
       data={data}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
-        <Card item={item} onPress={() => onPress(item.id, item.name)} />
+        <Card
+          item={item}
+          onPress={() => onPress(item.id, item.name)}
+          success={item.success}
+        />
       )}
       ListEmptyComponent={
         <View style={styles.empty}>

@@ -1,14 +1,11 @@
-import {
-  View,
-  Text,
-  FlatList,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput,
-} from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useLaunchList } from '../hooks/useLaunchList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
+import LoadingBar from '../components/shared/LoadingBar';
+import ErrorBar from '../components/shared/ErrorBar';
+import LaunchList from '../components/list/LaunchList';
+import SearchBar from '../components/list/SearchBar';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'LaunchList'>;
@@ -19,52 +16,21 @@ export default function LaunchListScreen({ navigation }: Props) {
     useLaunchList();
 
   if (loading) {
-    return (
-      <View style={[styles.container, styles.loading]}>
-        <Text>Carregando...</Text>
-      </View>
-    );
+    return <LoadingBar />;
   }
 
   if (error) {
-    return (
-      <View style={styles.container}>
-        <Text>{error}</Text>
-        <Text onPress={refetch}>Tentar Novamente</Text>
-      </View>
-    );
+    return <ErrorBar error={error} refetch={refetch} />;
   }
 
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Buscar missão"
-        value={search}
-        onChangeText={setSearch}
-        style={styles.input}
-      />
+      <SearchBar onChangeText={setSearch} value={search} />
 
-      <FlatList
-        showsVerticalScrollIndicator={false}
+      <LaunchList
         data={filteredLaunches}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }) => (
-          <TouchableOpacity
-            onPress={() =>
-              navigation.navigate('LaunchDetail', {
-                id: item.id,
-                name: item.name,
-              })
-            }
-            style={styles.card}
-          >
-            <Text>{item.name}</Text>
-          </TouchableOpacity>
-        )}
-        ListEmptyComponent={
-          <View style={styles.empty}>
-            <Text>Nenhum lançamento encontrado</Text>
-          </View>
+        onPress={(id, name) =>
+          navigation.navigate('LaunchDetail', { id, name })
         }
       />
     </View>
@@ -77,30 +43,5 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingTop: 8,
     paddingBottom: 16,
-  },
-  card: {
-    backgroundColor: '#fff',
-    padding: 16,
-    marginBottom: 10,
-    borderRadius: 8,
-    borderColor: '#d6d6d6',
-    borderWidth: 1,
-  },
-  loading: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  empty: {
-    alignItems: 'center',
-    marginTop: 40,
-  },
-  input: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: '#000000',
-    padding: 12,
-    marginBottom: 12,
-    fontSize: 14,
   },
 });

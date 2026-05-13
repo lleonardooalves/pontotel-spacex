@@ -5,7 +5,7 @@ import LaunchDetailScreen from '../screens/LaunchDetailScreen';
 
 export type RootStackParamList = {
   LaunchList: undefined;
-  LaunchDetail: { id: string; name: string };
+  LaunchDetail: { id: string };
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();

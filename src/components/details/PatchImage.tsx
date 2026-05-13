@@ -8,11 +8,7 @@ export type PatchImageProps = {
 export default function PatchImage({ launch }: PatchImageProps) {
   if (!launch?.links.patch.small) return null;
   return (
-    <Image
-      source={{ uri: launch.links.patch.small }}
-      style={styles.patch}
-      resizeMode="contain"
-    />
+    <Image source={{ uri: launch.links.patch.small }} style={styles.patch} resizeMode="contain" />
   );
 }
 

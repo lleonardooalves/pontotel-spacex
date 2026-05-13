@@ -10,19 +10,12 @@ export default function Header({ launch }: HeaderProps) {
     <View style={styles.header}>
       <Text style={styles.title}>{launch?.name}</Text>
       {launch?.success !== null && (
-        <View
-          style={[
-            styles.badge,
-            { backgroundColor: launch?.success ? '#4CAF50' : '#F44336' },
-          ]}
-        >
-          <Text style={styles.badgeText}>
-            {launch?.success ? 'Sucesso' : 'Falhou'}
-          </Text>
+        <View style={[styles.badge, { backgroundColor: launch?.success ? '#4CAF50' : '#F44336' }]}>
+          <Text style={styles.badgeText}>{launch?.success ? 'Sucesso' : 'Falhou'}</Text>
         </View>
       )}
       {launch?.success === null && (
-        <View style={[styles.badge, { backgroundColor: '#f2f700' }]}>
+        <View style={[styles.badge, { backgroundColor: '#FFC107' }]}>
           <Text style={styles.badgeText}>Futuro</Text>
         </View>
       )}

@@ -7,19 +7,15 @@ export function useLaunchList() {
   const [loading, setLoading] = useState(launches.length === 0);
   const [error, setError] = useState<string | null>(null);
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState<
-    'all' | 'success' | 'failed' | 'futures'
-  >('all');
+  const [statusFilter, setStatusFilter] = useState<'all' | 'success' | 'failed' | 'futures'>('all');
 
   const filteredLaunches = launches.filter((launch) => {
-    const matchesSearch = launch.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
+    const matchesSearch = launch.name.toLowerCase().includes(search.toLowerCase());
     const matchesStatus =
       statusFilter === 'all' ||
       (statusFilter === 'success' && launch.success === true) ||
       (statusFilter === 'failed' && launch.success === false) ||
-      (statusFilter === 'futures' && launch.success === null);
+      (statusFilter === 'futures' && launch.upcoming === true);
     return matchesSearch && matchesStatus;
   });
 
@@ -41,7 +37,6 @@ export function useLaunchList() {
   }, []);
 
   return {
-    launches,
     loading,
     error,
     refetch: fetchLaunches,

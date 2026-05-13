@@ -13,9 +13,7 @@ export default function InfoCard({ launch }: InfoCardProps) {
 
       <Text style={styles.label}>Data</Text>
       <Text style={styles.value}>
-        {launch?.date_utc
-          ? new Date(launch.date_utc).toLocaleDateString('pt-BR')
-          : '-'}
+        {launch?.date_utc ? new Date(launch.date_utc).toLocaleDateString('pt-BR') : '-'}
       </Text>
     </View>
   );

@@ -4,10 +4,10 @@ import { Launch } from '../../types/launch';
 type CardProps = {
   item: Launch;
   onPress: () => void;
-  success: boolean | null;
 };
 
-export default function Card({ item, onPress, success }: CardProps) {
+export default function Card({ item, onPress }: CardProps) {
+  const { success } = item;
   return (
     <TouchableOpacity onPress={onPress} style={styles.card} activeOpacity={0.8}>
       <View style={styles.content}>
@@ -15,12 +15,7 @@ export default function Card({ item, onPress, success }: CardProps) {
       </View>
 
       {success !== null && (
-        <View
-          style={[
-            styles.badge,
-            { backgroundColor: success ? '#4CAF50' : '#F44336' },
-          ]}
-        >
+        <View style={[styles.badge, { backgroundColor: success ? '#4CAF50' : '#F44336' }]}>
           <Text style={styles.badgeText}>{success ? '✓' : '✕'}</Text>
         </View>
       )}

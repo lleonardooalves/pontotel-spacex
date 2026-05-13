@@ -21,9 +21,7 @@ export default function StatusFilter({ value, onChange }: StatusFilterProps) {
           onPress={() => onChange(btn.value)}
           style={[styles.button, value === btn.value && styles.activeButton]}
         >
-          <Text style={[styles.text, value === btn.value && styles.activeText]}>
-            {btn.label}
-          </Text>
+          <Text style={[styles.text, value === btn.value && styles.activeText]}>{btn.label}</Text>
         </TouchableOpacity>
       ))}
     </View>

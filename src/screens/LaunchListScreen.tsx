@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useLaunchList } from '../hooks/useLaunchList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../navigation';
@@ -39,9 +39,9 @@ export default function LaunchListScreen({ navigation }: Props) {
 
       <LaunchList
         data={filteredLaunches}
-        onPress={(id, name) =>
-          navigation.navigate('LaunchDetail', { id, name })
-        }
+        onPress={(id) => navigation.navigate('LaunchDetail', { id })}
+        onRefresh={refetch}
+        refreshing={loading}
       />
     </View>
   );

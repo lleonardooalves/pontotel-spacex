@@ -1,5 +1,5 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Image } from 'react-native';
 import { RootStackParamList } from '../navigation';
 import { useLaunchDetail } from '../hooks/useLaunchDetail';
 
@@ -28,6 +28,13 @@ export default function LaunchDetailScreen({ route }: Props) {
 
   return (
     <ScrollView style={styles.container}>
+      {launch?.links.patch.small && (
+        <Image
+          source={{ uri: launch.links.patch.small }}
+          style={styles.patch}
+          resizeMode="contain"
+        />
+      )}
       <View style={styles.header}>
         <Text style={styles.title}>{launch?.name}</Text>
         <View
@@ -118,5 +125,11 @@ const styles = StyleSheet.create({
   loading: {
     justifyContent: 'center',
     alignItems: 'center',
+  },
+  patch: {
+    width: 120,
+    height: 120,
+    alignSelf: 'center',
+    marginBottom: 16,
   },
 });

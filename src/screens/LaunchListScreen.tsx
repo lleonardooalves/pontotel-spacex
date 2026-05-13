@@ -4,6 +4,7 @@ import {
   FlatList,
   StyleSheet,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import { useLaunchList } from '../hooks/useLaunchList';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
@@ -14,7 +15,8 @@ type Props = {
 };
 
 export default function LaunchListScreen({ navigation }: Props) {
-  const { launches, loading, error, refetch } = useLaunchList();
+  const { loading, error, refetch, filteredLaunches, setSearch, search } =
+    useLaunchList();
 
   if (loading) {
     return (
@@ -35,9 +37,16 @@ export default function LaunchListScreen({ navigation }: Props) {
 
   return (
     <View style={styles.container}>
+      <TextInput
+        placeholder="Buscar missão"
+        value={search}
+        onChangeText={setSearch}
+        style={styles.input}
+      />
+
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={launches}
+        data={filteredLaunches}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TouchableOpacity
@@ -74,7 +83,7 @@ const styles = StyleSheet.create({
     padding: 16,
     marginBottom: 10,
     borderRadius: 8,
-    borderColor: '#000000',
+    borderColor: '#d6d6d6',
     borderWidth: 1,
   },
   loading: {
@@ -84,5 +93,14 @@ const styles = StyleSheet.create({
   empty: {
     alignItems: 'center',
     marginTop: 40,
+  },
+  input: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    borderWidth: 1,
+    borderColor: '#000000',
+    padding: 12,
+    marginBottom: 12,
+    fontSize: 14,
   },
 });

@@ -6,6 +6,11 @@ export function useLaunchList() {
   const [launches, setLaunches] = useState<Launch[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [search, setSearch] = useState('');
+
+  const filteredLaunches = launches.filter((launches) =>
+    launches.name.toLowerCase().includes(search.toLowerCase()),
+  );
 
   const fetchLaunches = async () => {
     try {
@@ -24,5 +29,13 @@ export function useLaunchList() {
     fetchLaunches();
   }, []);
 
-  return { launches, loading, error, refetch: fetchLaunches };
+  return {
+    launches,
+    loading,
+    error,
+    refetch: fetchLaunches,
+    filteredLaunches,
+    search,
+    setSearch,
+  };
 }

@@ -22,6 +22,7 @@ export default function LaunchListScreen({ navigation }: Props) {
     search,
     statusFilter,
     setStatusFilter,
+    refreshing,
   } = useLaunchList();
 
   if (loading) {
@@ -41,7 +42,7 @@ export default function LaunchListScreen({ navigation }: Props) {
         data={filteredLaunches}
         onPress={(id) => navigation.navigate('LaunchDetail', { id })}
         onRefresh={refetch}
-        refreshing={loading}
+        refreshing={refreshing}
       />
     </View>
   );

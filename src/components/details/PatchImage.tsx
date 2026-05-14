@@ -2,11 +2,11 @@ import { Image, StyleSheet } from 'react-native';
 import { Launch } from '../../types/launch';
 
 export type PatchImageProps = {
-  launch: Launch | null;
+  launch: Launch;
 };
 
 export default function PatchImage({ launch }: PatchImageProps) {
-  if (!launch?.links.patch.small) return null;
+  if (!launch.links.patch.small) return null;
   return (
     <Image source={{ uri: launch.links.patch.small }} style={styles.patch} resizeMode="contain" />
   );

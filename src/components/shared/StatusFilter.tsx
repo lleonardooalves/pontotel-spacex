@@ -1,8 +1,8 @@
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type StatusFilterProps = {
-  value: 'all' | 'success' | 'failed' | 'futures';
-  onChange: (value: 'all' | 'success' | 'failed' | 'futures') => void;
+  value: 'all' | 'success' | 'failed' | 'upcoming';
+  onChange: (value: 'all' | 'success' | 'failed' | 'upcoming') => void;
 };
 
 export default function StatusFilter({ value, onChange }: StatusFilterProps) {
@@ -10,7 +10,7 @@ export default function StatusFilter({ value, onChange }: StatusFilterProps) {
     { label: 'Todos', value: 'all' as const },
     { label: 'Sucesso', value: 'success' as const },
     { label: 'Falha', value: 'failed' as const },
-    { label: 'Futuros', value: 'futures' as const },
+    { label: 'Em Breve', value: 'upcoming' as const },
   ];
 
   return (

@@ -23,15 +23,17 @@ export default function LaunchDetailScreen({ route }: Props) {
     return <ErrorBar error={error} refetch={refetch} />;
   }
 
+  if (!launch) return <LoadingBar />;
+
   return (
     <ScrollView style={styles.container}>
-      {launch?.links.patch.small && <PatchImage launch={launch} />}
+      <PatchImage launch={launch} />
 
       <Header launch={launch} />
 
       <InfoCard launch={launch} />
 
-      {launch?.details && <DetailsCard launch={launch} />}
+      {launch.details && <DetailsCard launch={launch} />}
     </ScrollView>
   );
 }

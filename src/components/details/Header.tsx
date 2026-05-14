@@ -2,23 +2,22 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Launch } from '../../types/launch';
 
 export type HeaderProps = {
-  launch: Launch | null;
+  launch: Launch;
 };
 
 export default function Header({ launch }: HeaderProps) {
   return (
     <View style={styles.header}>
-      <Text style={styles.title}>{launch?.name}</Text>
-      {launch?.success !== null && (
-        <View style={[styles.badge, { backgroundColor: launch?.success ? '#4CAF50' : '#F44336' }]}>
-          <Text style={styles.badgeText}>{launch?.success ? 'Sucesso' : 'Falhou'}</Text>
+      <Text style={styles.title}>{launch.name}</Text>
+      {launch.success !== null ? (
+        <View style={[styles.badge, { backgroundColor: launch.success ? '#4CAF50' : '#F44336' }]}>
+          <Text style={styles.badgeText}>{launch.success ? 'Sucesso' : 'Falha'}</Text>
         </View>
-      )}
-      {launch?.success === null && (
+      ) : launch.upcoming ? (
         <View style={[styles.badge, { backgroundColor: '#FFC107' }]}>
-          <Text style={styles.badgeText}>Futuro</Text>
+          <Text style={styles.badgeText}>Em Breve</Text>
         </View>
-      )}
+      ) : null}
     </View>
   );
 }

@@ -4,7 +4,7 @@ import Card from './Card';
 
 export type LaunchListProps = {
   data: Launch[];
-  onPress: (id: string, name: string) => void;
+  onPress: (id: string) => void;
   refreshing: boolean;
   onRefresh: () => void;
 };
@@ -15,7 +15,7 @@ export default function LaunchList({ data, onPress, refreshing, onRefresh }: Lau
       showsVerticalScrollIndicator={false}
       data={data}
       keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <Card item={item} onPress={() => onPress(item.id, item.name)} />}
+      renderItem={({ item }) => <Card item={item} onPress={() => onPress(item.id)} />}
       ListEmptyComponent={
         <View style={styles.empty}>
           <Text>Nenhum lançamento encontrado</Text>

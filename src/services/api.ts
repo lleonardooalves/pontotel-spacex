@@ -1,9 +1,9 @@
 import { Launch } from '../types/launch';
 
-const URL = 'https://api.spacexdata.com/v5';
+const BASE_URL = 'https://api.spacexdata.com/v5';
 
 export const getLaunches = async (): Promise<Launch[]> => {
-  const response = await fetch(`${URL}/launches`);
+  const response = await fetch(`${BASE_URL}/launches`);
 
   if (!response.ok) {
     throw new Error(`Failed to fetch launches ${response.status}`);
@@ -13,7 +13,7 @@ export const getLaunches = async (): Promise<Launch[]> => {
 };
 
 export const getLaunchById = async (id: string): Promise<Launch> => {
-  const response = await fetch(`${URL}/launches/${id}`);
+  const response = await fetch(`${BASE_URL}/launches/${id}`);
 
   if (!response.ok) {
     throw new Error(`Failed to fetch launch ${response.status}`);

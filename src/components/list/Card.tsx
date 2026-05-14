@@ -7,23 +7,22 @@ type CardProps = {
 };
 
 export default function Card({ item, onPress }: CardProps) {
-  const { success } = item;
+  const { success, upcoming } = item;
   return (
     <TouchableOpacity onPress={onPress} style={styles.card} activeOpacity={0.8}>
       <View style={styles.content}>
         <Text style={styles.title}>{item.name}</Text>
       </View>
 
-      {success !== null && (
+      {success !== null ? (
         <View style={[styles.badge, { backgroundColor: success ? '#4CAF50' : '#F44336' }]}>
           <Text style={styles.badgeText}>{success ? '✓' : '✕'}</Text>
         </View>
-      )}
-      {success === null && (
+      ) : upcoming ? (
         <View style={[styles.badge, { backgroundColor: '#FFC107' }]}>
-          <Text style={styles.badgeText}>◆</Text>
+          <Text style={styles.badgeText}>🔜</Text>
         </View>
-      )}
+      ) : null}
     </TouchableOpacity>
   );
 }

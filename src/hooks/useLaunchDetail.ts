@@ -13,7 +13,7 @@ export function useLaunchDetail(id: string) {
       setError(null);
       const data = await getLaunchById(id);
       setLaunch(data);
-    } catch (err) {
+    } catch {
       setError('Failed to fetch launch details');
     } finally {
       setLoading(false);

@@ -13,16 +13,16 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export default function Navigation() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator screenOptions={{ headerTitleAlign: 'center' }}>
         <Stack.Screen
           name="LaunchList"
           component={LaunchListScreen}
-          options={{ title: 'Lançamentos SpaceX', headerTitleAlign: 'center' }}
+          options={{ title: 'Lançamentos SpaceX' }}
         />
         <Stack.Screen
           name="LaunchDetail"
           component={LaunchDetailScreen}
-          options={{ title: 'Detalhes', headerTitleAlign: 'center' }}
+          options={{ title: 'Detalhes' }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -6,7 +6,7 @@ import LoadingBar from '../components/shared/LoadingBar';
 import ErrorBar from '../components/shared/ErrorBar';
 import LaunchList from '../components/list/LaunchList';
 import SearchBar from '../components/list/SearchBar';
-import StatusFilter from '../components/shared/StatusFilter';
+import StatusFilter from '../components/list/StatusFilter';
 
 type Props = {
   navigation: NativeStackNavigationProp<RootStackParamList, 'LaunchList'>;
